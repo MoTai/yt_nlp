@@ -33,11 +33,12 @@ module YtNlp
           body: { txt: text },
           headers: {
             "Accept" => "application/json"
-          }
+          },
+          timeout: 3
         )
 
         result_1 = normalize_response JSON.parse(response_1.body)
-      rescue HTTParty::ResponseError => e
+      rescue Timeout::Error, HTTParty::ResponseError
       end
 
       result_2 = nil
@@ -49,10 +50,11 @@ module YtNlp
             "X-Mashape-Key" => "DTftmgx6mqmshzoDzqDiiUGBpcsvp1VugBPjsn7LEA5WjpT1jp",
             "Content-Type" => "application/x-www-form-urlencoded",
             "Accept" => "application/json"
-          }
+          },
+          timeout: 3
         )
         result_2 = normalize_response JSON.parse(response_2.body)
-      rescue HTTParty::ResponseError => e
+      rescue Timeout::Error, HTTParty::ResponseError
       end
 
       result_3 = normalize_response Sentimentalizer.analyze(text)
