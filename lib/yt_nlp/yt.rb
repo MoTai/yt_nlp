@@ -1,9 +1,11 @@
 require 'yt'
 
 module YtNlp
+  def self.configuration
+    Yt.configuration
+  end
+
   def self.config
-    conf = ::Yt::Configuration.new
-    yield conf if block_given?
-    conf
+    yield Yt.configuration
   end
 end

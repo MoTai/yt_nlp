@@ -16,7 +16,7 @@ RSpec.configure do |config|
   config.run_all_when_everything_filtered = false
 
   config.before :all do
-    Yt.configure do |config|
+    YtNlp.config do |config|
       config.api_key = ENV['YT_TEST_SERVER_API_KEY']
       config.log_level = ENV['YT_LOG_LEVEL']
     end
