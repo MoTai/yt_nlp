@@ -25,6 +25,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'httparty'
   # spec.add_dependency 'semantria'
   spec.add_dependency 'sentimentalizer', '>= 0.2.3'
+  spec.add_dependency 'prawn'
+  spec.add_dependency 'prawn-table'
 
   spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'rspec'

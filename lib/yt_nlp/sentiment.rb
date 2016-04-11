@@ -8,9 +8,18 @@ Sentimentalizer.setup
 module YtNlp
   class Sentiment
     include HTTParty
+
+    class << self
+      def analyze_and_report video_id, size, type, debug=false
+        results = new({debug: debug}).analyze(video_id, size, type)
+        YtNlp::Report.generate_sentiment_report(video_id, size, type, results)
+      end
+    end
+
     def initialize(options={})
       @debug = options.fetch :debug, false
     end
+
     def analyze video_id, size=1000, type=:top_comment
       comments = fetch_comments(video_id, size, type)
       comments.map do |text|
