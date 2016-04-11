@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-source 'https://eazEELp41bzttMAhXhk7@gem.fury.io/qianghan/'
+source 'https://gem.fury.io/fullscreen/'
 
 # Specify your gem's dependencies in yt.gemspec
 gemspec
