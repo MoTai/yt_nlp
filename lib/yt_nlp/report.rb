@@ -9,6 +9,15 @@ module YtNlp
         grouped_data = data.group_by { |r| r[:sentiment] }
 
         doc = Prawn::Document.new do |pdf|
+          pdf.font_families.update("Arial" => {
+            :normal => "/Library/Fonts/Arial.ttf",
+            :italic => "/Library/Fonts/Arial Italic.ttf",
+            :bold => "/Library/Fonts/Arial Bold.ttf",
+            :bold_italic => "/Library/Fonts/Arial Bold Italic.ttf"
+          })
+
+          pdf.font "Arial"
+
           pdf.text "Sentiment Analysis Reports", size: 25, align: :center
 
           pdf.text DateTime.now.strftime("%m/%d/%Y %I:%M%p"), align: :center, size: 12
