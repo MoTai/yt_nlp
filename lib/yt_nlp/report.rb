@@ -10,10 +10,10 @@ module YtNlp
 
         doc = Prawn::Document.new do |pdf|
           pdf.font_families.update("Arial" => {
-            :normal => "/Library/Fonts/Arial.ttf",
-            :italic => "/Library/Fonts/Arial Italic.ttf",
-            :bold => "/Library/Fonts/Arial Bold.ttf",
-            :bold_italic => "/Library/Fonts/Arial Bold Italic.ttf"
+            normal: font_path("Arial.ttf"),
+            italic: font_path("Arial Italic.ttf"),
+            bold: font_path("Arial Bold.ttf"),
+            bold_italic: font_path("Arial Bold Italic.ttf")
           })
 
           pdf.font "Arial"
@@ -88,6 +88,10 @@ module YtNlp
 
       def image_path name
         File.expand_path("../images/#{name}", __FILE__)
+      end
+
+      def font_path name
+        File.expand_path("../fonts/#{name}", __FILE__)
       end
     end
 
