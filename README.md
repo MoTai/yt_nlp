@@ -13,7 +13,12 @@ YtNlp.config do |config|
   config.api_key = 'youtube_api_key'
 end
 
+# results in ruby hash
 result = YtNlp::Sentiment.analyze('MsplPPW7tFo', 1000, :top_comments)
+
+# results in PDF format
+pdf_str = YtNlp::Sentiment.analyze_and_report('MsplPPW7tFo', 1000, :top_comments)
+File.open('report.pdf', 'w') { |f| f.write pdf_str }
 ```
 
 ### Tests
