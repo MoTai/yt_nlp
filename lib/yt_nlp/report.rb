@@ -80,9 +80,9 @@ module YtNlp
           neu: neu,
           pos: pos,
           total: data.length,
-          perc_neg: "%.2f%" % [neg / total.to_f],
-          perc_pos: "%.2f%" % [pos / total.to_f],
-          perc_neu: "%.2f%" % [neu / total.to_f]
+          perc_neg: "%.2f%" % [neg / total.to_f * 100],
+          perc_pos: "%.2f%" % [pos / total.to_f * 100],
+          perc_neu: "%.2f%" % [neu / total.to_f * 100]
         }
       end
 
