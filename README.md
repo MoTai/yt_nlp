@@ -21,6 +21,11 @@ pdf_str = YtNlp::Sentiment.analyze_and_report('MsplPPW7tFo', 1000, :top_comments
 File.open('report.pdf', 'w') { |f| f.write pdf_str }
 ```
 
+This is what a report look like:
+
+![alt report](https://raw.githubusercontent.com/MoTai/yt_nlp/master/example_report.png "report")
+
+
 ### Tests
 
 The tests will hit real youtube data API, make sure you have registered for an API key.
