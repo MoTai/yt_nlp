@@ -11,8 +11,12 @@ module YtNlp
 
     class << self
       def analyze_and_report video_id, size, type, debug=false
-        results = new({debug: debug}).analyze(video_id, size, type)
+        results = new({debug: debug}).do_analyze(video_id, size, type)
         YtNlp::Report.generate_sentiment_report(video_id, size, type, results)
+      end
+
+      def analyze video_id, size, type, debug=false
+        new({debug: debug}).do_analyze(video_id, size, type)
       end
     end
 
@@ -20,7 +24,7 @@ module YtNlp
       @debug = options.fetch :debug, false
     end
 
-    def analyze video_id, size=1000, type=:top_comment
+    def do_analyze video_id, size=100, type=:top_comment
       comments = fetch_comments(video_id, size, type)
       comments.map do |text|
         h, debug_info = analyze_each(text)

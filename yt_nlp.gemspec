@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'activesupport'
   spec.add_dependency 'yt'
   spec.add_dependency 'httparty'
-  spec.add_dependency 'sentimentalizer'
+  spec.add_dependency 'sentimentalizer', '~> 0.3'
   spec.add_dependency 'prawn'
   spec.add_dependency 'prawn-table'
 
