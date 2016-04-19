@@ -40,6 +40,7 @@ module YtNlp
 
     def analyze_each(text)
       result_1 = nil
+
       begin
         response_1 = HTTParty.post(
           'http://sentiment.vivekn.com/api/text/',
@@ -54,32 +55,36 @@ module YtNlp
       rescue Timeout::Error, HTTParty::ResponseError
       end
 
-      result_2 = nil
-      begin
-        response_2 = HTTParty.post(
-          "https://twinword-sentiment-analysis.p.mashape.com/analyze/",
-          query: { text: text },
-          headers:{
-            "X-Mashape-Key" => "DTftmgx6mqmshzoDzqDiiUGBpcsvp1VugBPjsn7LEA5WjpT1jp",
-            "Content-Type" => "application/x-www-form-urlencoded",
-            "Accept" => "application/json"
-          },
-          timeout: 3
-        )
-        result_2 = normalize_response JSON.parse(response_2.body)
-      rescue Timeout::Error, HTTParty::ResponseError
-      end
+      result_1
+      # result_2 = nil
 
-      result_3 = normalize_response Sentimentalizer.analyze(text)
+      # begin
+      #   response_2 = HTTParty.post(
+      #     "https://twinword-sentiment-analysis.p.mashape.com/analyze/",
+      #     query: { text: text },
+      #     headers:{
+      #       "X-Mashape-Key" => "DTftmgx6mqmshzoDzqDiiUGBpcsvp1VugBPjsn7LEA5WjpT1jp",
+      #       "Content-Type" => "application/x-www-form-urlencoded",
+      #       "Accept" => "application/json"
+      #     },
+      #     timeout: 3
+      #   )
+      #   result_2 = normalize_response JSON.parse(response_2.body)
+      #   puts result_2
+      # rescue Timeout::Error, HTTParty::ResponseError
+      # end
+
+      # result_3 = normalize_response Sentimentalizer.analyze(text)
 
       # TODO: result_4
       # client = Semantria::Client.new '06f7212b-7e12-4f1b-a040-f4fc732c4acc', '911e4915-9058-47e2-b106-df51b94f413b'
       # client.queue_document(comments)
       # client.get_processed_documents
-      result_set = [result_1, result_2, result_3].compact
-      vote(result_set).tap do |r|
-        r[:debug] = result_set if @debug
-      end
+
+      # result_set = [result_1, result_2, result_3].compact
+      # vote(result_set).tap do |r|
+      #   r[:debug] = result_set if @debug
+      # end
     end
 
     def vote results
